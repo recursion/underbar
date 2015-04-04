@@ -107,31 +107,7 @@
 
   // Produce a duplicate-free version of the array.
   _.uniq = function(array) {
-    var result = [];
 
-    // assume the element being checked is unique until proven otherwise
-    var uniq = true;
-
-    // for each element in an array
-    _.each(array, function(element, index){
-      // compare it to the elements in the array before the current element
-      _.filter(_.first(array, index), function(x){
-        if (x === element) {
-          uniq = false;
-        }
-      });
-      // compare it to the elements in the array after the current element
-      _.filter(_.last(array, index), function(x){
-        if (x === element) {
-          uniq = false;
-        }
-      });
-      //  so long as it is unique, add it to the new array.
-      if (uniq) {
-        result.push(element);
-      }
-    });
-    return result;
   };
 
 
