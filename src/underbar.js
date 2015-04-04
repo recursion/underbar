@@ -119,7 +119,6 @@
     return result;
 };
 
-
   // Return the results of applying an iterator to each element.
   _.map = function(collection, iterator) {
     // map() is a useful primitive iteration function that works a lot
@@ -127,10 +126,9 @@
     // the members, it also maintains an array of results.
 
     // set result to an object, or array, depending on the collection type we are passed.
-    var result = (Array.isArray(collection)) ? {} : [];
+    var result = (Array.isArray(collection)) ? [] : {};
 
     _.each(collection, function(value, index) {
-      console.log(value, index, iterator(value));
       result[index] = iterator(value);
     });
 
