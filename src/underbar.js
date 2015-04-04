@@ -174,9 +174,17 @@
   //   }); // should be 5, regardless of the iterator function passed in
   //          No accumulator is given so the first element is used.
   _.reduce = function(collection, iterator, accumulator) {
+      if (!accumulator) {
+        console.log('No accumulator passed in');
+        var accumulator = '@!X';
+      }
     _.each(collection, function(value) {
-      accumulator = iterator(accumulator, value);
-      console.log('Value: ' + value + '\nAccumulator: ' + accumulator);
+      if (accumulator === '@!X') {
+        accumulator = value;
+      } else {
+        accumulator = iterator(accumulator, value);
+        console.log('Value: ' + value + '\nAccumulator: ' + accumulator);
+      }
     });
     console.log('Total: ' + accumulator);
     return accumulator;
