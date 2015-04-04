@@ -32,14 +32,12 @@
   // Return an array of the first n elements of an array. If n is undefined,
   // return just the first element.
   _.first = function(array, n) {
-    console.log('First: ' + array.slice(0, n));
     return n === undefined ? array[0] : array.slice(0, n);
   };
 
   // Like first, but for the last elements. If n is undefined, return just the
   // last element.
   _.last = function(array, n) {
-    console.log('Last: ' + array.slice(n-1));
     if (n === 0) {
       return [];
     } else if (n > array.length) {
@@ -127,6 +125,16 @@
     // map() is a useful primitive iteration function that works a lot
     // like each(), but in addition to running the operation on all
     // the members, it also maintains an array of results.
+
+    // set result to an object, or array, depending on the collection type we are passed.
+    var result = (Array.isArray(collection)) ? {} : [];
+
+    _.each(collection, function(value, index) {
+      console.log(value, index, iterator(value));
+      result[index] = iterator(value);
+    });
+
+    return result;
   };
 
   /*
