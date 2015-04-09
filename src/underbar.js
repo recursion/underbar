@@ -203,10 +203,11 @@
     var result = true;
     _.reduce(collection, function(allTrue, currentItem) {
       if (!allTrue) {
+        result = false;
         return false;
       }
-      return iterator(currentItem);
-    });
+      return !!iterator(currentItem);
+    }, true);
     return result;
   };
 
