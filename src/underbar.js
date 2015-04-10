@@ -262,6 +262,14 @@
   // Like extend, but doesn't ever overwrite a key that already
   // exists in obj
   _.defaults = function(obj) {
+    for (var i = 1; i < arguments.length; i++) {
+      for (var prop in arguments[i]) {
+        if (obj[prop] === undefined) {
+          obj[prop] = arguments[i][prop];
+        }
+      }
+    }
+    return obj;
   };
 
 
