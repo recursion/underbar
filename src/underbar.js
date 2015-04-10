@@ -204,7 +204,12 @@
       if (!allTrue) {
         return false;
       }
-      return !!iterator(currentItem);
+      if (iterator) {
+        return !!iterator(currentItem);
+      } else {
+        // Since there is no iterator, just check each item for truthiness or falsiness.
+        return !!(currentItem);
+      }
     }, true);
   };
 
