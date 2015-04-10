@@ -349,7 +349,7 @@
     var tmp = array.slice();
     var result = [];
     while (tmp.length > 0) {
-      result.push(tmp.splice(Math.random(0, tmp.length), 1)[0]);
+      result.push(tmp.splice(Math.random() * tmp.length, 1)[0]);
     }
     console.log(array, result);
     return result;
