@@ -331,6 +331,7 @@
   // parameter. For example _.delay(someFunction, 500, 'a', 'b') will
   // call someFunction('a', 'b') after 500ms
   _.delay = function(func, wait) {
+    setTimeout(func, wait, arguments[2], arguments[3], arguments[4], arguments[5], arguments[6]);
   };
 
 
