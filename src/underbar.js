@@ -217,6 +217,17 @@
   // provided, provide a default one
   _.some = function(collection, iterator) {
     // TIP: There's a very clever way to re-use every() here.
+      return _.reduce(collection, function(anyTrue, currentItem) {
+      if (anyTrue) {
+        return true;
+      }
+      if (iterator) {
+        return !!iterator(currentItem);
+      } else {
+        // Since there is no iterator, just check each item for truthiness or falsiness.
+        return !!(currentItem);
+      }
+    }, false);
   };
 
 
