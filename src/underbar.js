@@ -317,7 +317,7 @@
 
     return function() {
       if (arguments[0] in results) {
-        return results;
+        return results[arguments[0]];
       }
       results[arguments[0]] = func.apply(this, arguments);
       return results[arguments[0]];
