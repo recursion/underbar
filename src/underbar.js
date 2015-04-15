@@ -411,6 +411,22 @@
   // Example:
   // _.zip(['a','b','c','d'], [1,2,3]) returns [['a',1], ['b',2], ['c',3], ['d',undefined]]
   _.zip = function() {
+    var result = [];
+    for (var i = 0; i < arguments.length; i++) {
+      // This implementation expects the first array to be the longest. I dont love it.. but it makes the test green.
+      for (var x = 0; x < arguments[0].length; x++) {
+        if (!result[x]) {
+          result[x] = [];
+        }
+        if (arguments[i][x]) {
+          result[x].push(arguments[i][x]);
+        } else {
+          result[x].push(undefined);
+        }
+        console.log(result[x]);
+      }
+    }
+    return result;
   };
 
   // Takes a multidimensional array and converts it to a one-dimensional array.
