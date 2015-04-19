@@ -513,7 +513,7 @@
             lastResult = func();
             timeLastCalled = Date.now();
             scheduled = false;
-          }, wait - timeDiff);
+          }, wait - timeDiff + 1);
           scheduled = true;
         }
       }
