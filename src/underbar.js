@@ -469,6 +469,23 @@
   // Take the difference between one array and a number of other arrays.
   // Only the elements present in just the first array will remain.
   _.difference = function(array) {
+    var result = [];
+
+    // iterate through each element in the first array
+    for (var i = 0; i < arguments[0].length; i++) {
+      var elementInOtherCollections = false;
+      // check every other array for each element in the first
+      for (var j = 1; j < arguments.length; j++) {
+        if (_.contains(arguments[j], arguments[0][i])) {
+          elementInOtherCollections = true;
+        }
+      }
+      if (!elementInOtherCollections) {
+        result.push(arguments[0][i]);
+      }
+    }
+
+    return result;
   };
 
   // Returns a function, that, when invoked, will only be triggered at most once
