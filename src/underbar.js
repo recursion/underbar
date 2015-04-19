@@ -494,5 +494,30 @@
   //
   // Note: This is difficult! It may take a while to implement.
   _.throttle = function(func, wait) {
+    var timeLastCalled = 0;
+    var scheduled = false;
+    var lastResult;
+    var timeDiff;
+    return function(){
+
+      if (timeLastCalled === 0) {
+        lastResult = func();
+        timeLastCalled = Date.now();
+      } else {
+        timeDiff = Date.now() - timeLastCalled;
+        if (timeDiff > wait) {
+          lastResult = func();
+          timeLastCalled = Date.now();
+        } else if (!scheduled) {
+          setTimeout(function() {
+            lastResult = func();
+            timeLastCalled = Date.now();
+            scheduled = false;
+          }, wait - timeDiff);
+          scheduled = true;
+        }
+      }
+      return lastResult;
+    };
   };
 }());
