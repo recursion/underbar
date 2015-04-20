@@ -501,16 +501,16 @@
     return function(){
 
       if (timeLastCalled === 0) {
-        lastResult = func();
+        lastResult = func.apply(null, Array.prototype.slice.call(arguments));
         timeLastCalled = Date.now();
       } else {
         timeDiff = Date.now() - timeLastCalled;
         if (timeDiff > wait) {
-          lastResult = func();
+          lastResult = func.apply(null, Array.prototype.slice.call(arguments));
           timeLastCalled = Date.now();
         } else if (!scheduled) {
           setTimeout(function() {
-            lastResult = func();
+            lastResult = func.apply(null, Array.prototype.slice.call(arguments));
             timeLastCalled = Date.now();
             scheduled = false;
           }, wait - timeDiff + 1);
